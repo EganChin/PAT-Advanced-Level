@@ -50,13 +50,13 @@ Sample Output:
 10000001 64 90
 */
 
+//2018.7.25 17:30
+
 #include <iostream>
 #include <algorithm>
 #include <cstring>
 #include <vector>
-using namespace std;
-
-#define MAX_PEO 100010
+using namespace std;      
 
 typedef struct {
     char id[10];
@@ -94,9 +94,9 @@ int main()
             continue;
         if(temp.virtue >= H && temp.talent >= H)
             sages.push_back(temp);
-        else if(temp.virtue >= H)
+        else if(temp.virtue >= H && temp.talent < H)
             noblemen.push_back(temp);
-        else if(temp.virtue > temp.talent)
+        else if(temp.virtue >= temp.talent)
             foolmen.push_back(temp);
         else
             smallmen.push_back(temp);
@@ -118,3 +118,5 @@ int main()
     
     return 0;
 }
+
+//2018.7.25 18:10
