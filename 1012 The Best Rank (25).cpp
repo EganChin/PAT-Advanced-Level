@@ -79,8 +79,7 @@ int main()
     Student stus[N];
     for(int i = 0; i<N; i++){
         scanf("%d%d%d%d", &stus[i].id, &stus[i].grade[1], &stus[i].grade[2], &stus[i].grade[3]);
-        stus[i].grade[0] = round((stus[i].grade[1] + stus[i].grade[2] + stus[i].grade[3])/3) + 0.5;
-        
+        stus[i].grade[0] = (stus[i].grade[1] + stus[i].grade[2] + stus[i].grade[3])/3;
         
     }
     //Evaluating Four Ranks
@@ -98,18 +97,19 @@ int main()
     while(M--){
         int id, maxG, maxR;
         scanf("%d", &id);
-        if(ranklist[id][0] == 0)
+        int high = 0;
+        for(int i=0; i<4; i++)
+            if(ranklist[id][i] < ranklist[id][high])
+                high = i;
+        if(ranklist[id][high] == 0)
             printf("N/A\n");
-        else{
-            int high = 0;
-            for(int i=0; i<4; i++)
-                if(ranklist[id][i] < ranklist[id][high]){
-                    high = i;
-                }
-            printf("%d %c\n", ranklist[id][high], courses[high]);
-                  
-        }
+        else
+            printf("%d %c\n", ranklist[id][high], courses[high]);        
+                
     }
     system("PAUSE");
+    return 0;
 }
 
+//2018.7.26 0:43 WA
+//2018.7.26 1:05 AC
