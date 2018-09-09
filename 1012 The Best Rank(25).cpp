@@ -36,6 +36,8 @@ Sample Input
 310104
 310105
 999999
+
+
 Sample Output
 
 1 C
@@ -82,6 +84,7 @@ int main()
         stus[i].grade[0] = (stus[i].grade[1] + stus[i].grade[2] + stus[i].grade[3])/3;
         
     }
+    
     //Evaluating Four Ranks
     for(now=0; now<4; now++){
         sort(stus, stus+N, cmp);
