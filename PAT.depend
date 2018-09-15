@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1536479309 source:e:\code\project\pat\sort\1012 the best rank(25).cpp
+	<iostream>
+	<cmath>
+	<algorithm>
+
+1537001586 source:e:\code\project\pat\sort\1016 phone bills (25).cpp
+	<iostream>
+	<cstring>
+	<algorithm>
+
+1531660615 source:e:\code\project\pat\sort\1025 pat ranking(25).cpp
+	<iostream>
+	<vector>
+	<cstring>
+	<algorithm>
+
+1536481313 source:e:\code\project\pat\sort\1028 list sorting(25).cpp
+	<cstring>
+	<algorithm>
+	<iostream>
+
+1536489163 source:e:\code\project\pat\sort\1055 the world's richest(25).cpp
+	<cstdlib>
+	<cstring>
+	<algorithm>
+	<iostream>
+
+1532514256 source:e:\code\project\pat\sort\1062 talent and virtue (25).cpp
+	<iostream>
+	<algorithm>
+	<cstring>
+	<vector>
+
+1536930673 source:e:\code\project\pat\sort\1075 pat judge (25).cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	<algorithm>
+
+1537000811 source:e:\code\project\pat\sort\1080 graduate admission (30).cpp
+	<iostream>
+	<algorithm>
+
+1537001558 source:e:\code\project\pat\sort\1083 list grades (25).cpp
+	<iostream>
+	<algorithm>
+

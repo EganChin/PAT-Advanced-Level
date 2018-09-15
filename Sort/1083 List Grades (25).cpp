@@ -62,7 +62,7 @@ int main(){
     int grade1, grade2;
     scanf("%d %d", &grade1, &grade2);
 
-    qsort(stu, n, sizeof(stu[0]), cmp);
+    sort(stu, stu+n, cmp);
 
     bool flag = false;
 
