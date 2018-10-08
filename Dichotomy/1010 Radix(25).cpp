@@ -32,6 +32,10 @@ Sample Output 1:
 Sample Input 2:
 1 ab 1 2
 Sample Output 2:
+Sample Input 3:
+10 aaaaaaaaaa 2 15
+Sample Output 3:
+411893136160
 Impossible
 */
 
@@ -61,14 +65,14 @@ long long convertToDec(char N[], long long radix, long long ub){
     int len = strlen(N);
     for(int i=0; i<len; i++){
         ans = ans * radix + IntMap[N[i]];
-        if(ans > ub) return -1; //超过inf或N1，发生溢出
+        if(ans < 0 || ans > ub) return -1; //超过inf或N1，发生溢出
     }
     return ans;
 }
 
 int cmp(char N2[], long long radix, long long N1Dec){
     long long N2Dec = convertToDec(N2, radix, N1Dec);
-    if(N2Dec<0 || N2Dec > N1Dec) return 1; //溢出说明N2DEC > N1DEC
+    if(N2Dec < 0 || N2Dec > N1Dec) return 1; //溢出说明N2DEC > N1DEC
     else if(N2Dec == N1Dec)  return 0;   //相等
     else return -1;    //N2Dec < N1Dec
 }
@@ -94,6 +98,7 @@ int findLargestDigit(char N2[]){
     return ans + 1;
 }
 
+
 int main()
 {
     char N1[20], N2[20];
@@ -112,7 +117,7 @@ int main()
     long long low = findLargestDigit(N2);   //  找到N2的最大数位+1作为下界
     long long high = std::max(low, N1Dec);    //上界
     long long ans = binarySearch(N2, low, high, N1Dec);
-    ans == -1 ? printf("Impossible\n") : printf("%d\n", ans);
+    ans == -1 ? printf("Impossible\n") : printf("%lld\n", ans);
 
     return 0;
 }
