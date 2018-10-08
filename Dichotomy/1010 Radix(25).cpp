@@ -43,7 +43,7 @@ Impossible
 
 #include<algorithm>
 #include<cstdio>
-#include<cstring>2222
+#include<cstring>
 
 long long IntMap[256];
 
@@ -61,17 +61,16 @@ long long convertToDec(char N[], long long radix, long long ub){
     int len = strlen(N);
     for(int i=0; i<len; i++){
         ans = ans * radix + IntMap[N[i]];
-        if(ans < 0 || ans > ub) return -1; //超过inf或N1，发生溢出
+        if(ans > ub) return -1; //超过inf或N1，发生溢出
     }
     return ans;
 }
 
 int cmp(char N2[], long long radix, long long N1Dec){
     long long N2Dec = convertToDec(N2, radix, N1Dec);
-    if(N2Dec<0) return 1; //溢出说明N2DEC > N1DEC
+    if(N2Dec<0 || N2Dec > N1Dec) return 1; //溢出说明N2DEC > N1DEC
     else if(N2Dec == N1Dec)  return 0;   //相等
-    else if(N2Dec < N1Dec) return -1;    //N2Dec < N1Dec
-    else return 1;
+    else return -1;    //N2Dec < N1Dec
 }
 
 long long binarySearch(char N2[], long long left, long long right, long long N1Dec){
