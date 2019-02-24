@@ -92,7 +92,7 @@ int main(){
     for(int l=1; l<=n; l++){
         //找到右端点，一般输入范围为[0,n],由于l从1开始，所以r=n+1
         int r = lower_bound(l, n+1, sum[l-1]+m);
-        printf("right:%d,%d,%d\n", r, sum[r],nearM);
+        //printf("right:%d,%d,%d\n", r, sum[r],nearM);
         //价格正好合适，结束查找
         if(sum[r] - sum[l-1] == m){
             nearM = m;
@@ -110,3 +110,5 @@ int main(){
     }
 
 }
+
+// end 21:48
