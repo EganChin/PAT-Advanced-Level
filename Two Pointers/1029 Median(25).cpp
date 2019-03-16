@@ -49,8 +49,6 @@ int main()
                 scanf("%d", &S2);
             else if(j==n2)
                 S2 = INF;
-            else
-                break;
         }
     }
     //由于最后一趟循环未比较大小，因此输出时需要再比较一次
