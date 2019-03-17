@@ -23,7 +23,6 @@ Sample Output:
 //21L09 read
 
 #include<iostream>
-#include<cmath>
 #include<algorithm>
 using namespace std;
 
@@ -47,7 +46,7 @@ int main()
             j++;
             if(j<n2)
                 scanf("%d", &S2);
-            else if(j==n2)
+            else
                 S2 = INF;
         }
     }
@@ -58,6 +57,7 @@ int main()
 
 //21:24 内存超限
 //22:04 AC
+//22:29 删除当j>n2时,中断循环的冗余代码
 
 /*
 如果将所有数据读入内存，会导致内存超限
