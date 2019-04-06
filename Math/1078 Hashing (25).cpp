@@ -32,43 +32,33 @@ bool hashtable[10010] = {0};
 bool isPrime(int n){
     if(n<=1)
         return false;
-    for(int i=2; i<(int)sqrt(n*1.0); i++)
+    for(int i=2; i<=(int)sqrt(n*1.0); i++)
         if(n % i == 0)
             return false;
     return true;
 }
 
 int main(){
-    int m, n, a, flag = 0;
+    int m, n, a;
     scanf("%d%d", &m, &n);
-    while(!isPrime(m)){
+    while(!isPrime(m))
         m++;
-    }
     for(int i=0; i<n; i++){
         scanf("%d", &a);
-        int h = a%m;
+            int h = a%m;
+        if(i)
+            printf(" ");
+        //尝试采用二次方探查法；
+        for(int x=1;x<m && hashtable[h];x++)
+            h = (a+x*x)%m;
         if(!hashtable[h]){
+            printf("%d", h);
             hashtable[h] = true;
-            if(i==0) printf("%d", h);
-            else printf(" %d", h);
         }else{
-            int step;
-            for(step=1; step<m; step++){
-                h = (a+step*step)%m;
-                //printf("\nh=%d\n", h);
-                if(!hashtable[h]){
-                    hashtable[h] = true;
-                    if(i==0) printf("%d", h);
-                        else printf(" %d", h);
-                    break;
-                }
-            }
-            if(step >= m){
-                if(i>0) printf(" ");
-                printf("-");
-            }
+            printf("-");
         }
     }
+    printf("\n");
     return 0;
 }
 
