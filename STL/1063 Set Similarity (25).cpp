@@ -50,7 +50,7 @@ int main() {
     int n, m, k, x;
     scanf("%d", &n);
 
-    set<int> sets[n+10];
+    set<int> sets[n + 10];
 
     for (int i = 1; i <= n; i++) {
         scanf("%d", &m);
@@ -65,17 +65,21 @@ int main() {
     for (int i = 0; i < k; ++i) {
         int q1, q2;
         scanf("%d%d", &q1, &q2);
-        set<int> set1 = sets[q1], set2 = sets[q2];
-        float total = set2.size(), same = 0;
-        for(auto &it : set1){
-            if(set2.find(it) != set2.end())
+        auto it1 = sets[q1].begin(), it2 = sets[q2].begin();
+        float same = 0;
+        while (it1 != sets[q1].end() && it2 != sets[q2].end()) {
+            while (it1 != sets[q1].end() && *it1 < *it2) it1++;
+            while (it2 != sets[q2].end() && *it1 > *it2) it2++;
+            if (*it1 == *it2) {
+                it1++;
+                it2++;
                 same++;
-            else
-                total++;
+            }
         }
 
-        printf("%.1f%%\n", same*100/total);
+        printf("%.1f%%\n",same * 100 / (sets[q1].size() + sets[q2].size() - same));
     }
 }
 
-//16:41 AC
+//16:41 PAT AC, NC RT
+//16:54 PAT AC, NC AC
