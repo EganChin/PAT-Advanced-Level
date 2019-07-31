@@ -78,7 +78,7 @@ int main() {
     cin >> n >> a >> b;
 
     int exp1, exp2;
-    a = deal(a, exp1) +"*10^"+exp1;
+    a = deal(a, exp1);
     b = deal(b, exp2);
 
     if (a == b && exp1==exp2)
