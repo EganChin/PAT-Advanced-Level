@@ -28,3 +28,56 @@ may
 13
  * **/
 
+//2019.7.31 read
+
+#include <iostream>
+#include <map>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+int main() {
+    string lower[13] = {"tret", "jan", "feb", "mar", "apr", "may", "jun", "jly", "aug", "sep", "oct", "nov", "dec"};
+
+    string higher[13] = {"tret", "tam", "hel", "maa", "huh", "tou", "kes", "hei", "elo", "syy", "lok", "mer", "jou"};
+
+    string earthToMar[170];
+    map<string, int> marToEarth;
+
+
+    for (int i = 0; i < 13; i++) {
+        earthToMar[i] = lower[i];
+        marToEarth[lower[i]] = i;
+        //建立高12位的语言映射
+        earthToMar[(i) * 13] = higher[i];
+        marToEarth[higher[i]] = (i) * 13;
+    }
+
+    for (int h = 1; h < 13; h++) {
+        for (int l = 1; l < 13; l++) {
+            string str = higher[h] + " " + lower[l];
+            earthToMar[h * 13 + l] = str;
+            marToEarth[str] = h * 13 + l;
+        }
+    }
+
+    int n;
+    scanf("%d%*c", &n);
+
+    while (n--) {
+        string str, mar;
+        getline(cin, str);
+        if (str[0] >= '0' && str[0] <= '9') {
+            //转数字
+            int num = 0;
+            for (char i : str)
+                num = num * 10 + (i - '0');
+            cout << earthToMar[num] << endl;
+        } else {
+            cout << marToEarth[str] << endl;
+        }
+    }
+}
+
+//17:57 PAT AC
