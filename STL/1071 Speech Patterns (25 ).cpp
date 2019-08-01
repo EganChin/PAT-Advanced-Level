@@ -20,3 +20,58 @@ Can1: "Can a can can a can?  It can!"
 Sample Output:
 can 5
  * **/
+
+//2019.8.1 16:11
+//2019.8.1 16:19
+
+#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+bool isValid(char ch) {
+    return (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9');
+}
+
+int main() {
+    map<string, int> count;
+
+    string text;
+
+    getline(cin, text);
+
+    int i = 0;
+
+    while (i < text.length()) {
+        string word;
+        //找出单词
+        while (i<text.length() && isValid(text[i])){
+            char ch = text[i++];
+            if((ch >= 'A' && ch <= 'Z'))
+                ch = 'a' + (ch-'A');
+            word+=ch;
+        }
+
+        if(!word.empty()){
+            count[word]++;
+        }
+
+        while (i<text.length() && !isValid(text[i])) i++;
+    }
+
+    string word;
+    int max = 0;
+    for(auto it = count.begin(); it!=count.end(); it++){
+        if(it->second > max){
+            word = it->first;
+            max = it->second;
+        }
+    }
+
+    cout << word << " " << max << endl;
+
+    return 0;
+}
+
+//16:33 PAT AC
