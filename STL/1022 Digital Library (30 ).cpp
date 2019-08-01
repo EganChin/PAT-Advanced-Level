@@ -74,3 +74,65 @@ Sample Output:
 Not Found
  * **/
 
+//2019.16:41 reading
+//2019.16:49 read
+
+//#include <cstdio>
+#include <iostream>
+#include <map>
+#include <set>
+using namespace std;
+
+/**
+ *
+1: a book title
+2: name of an author
+3: a key word
+4: name of a publisher
+5: a 4-digit number representing the year
+**/
+
+map<string, set<int>> mp[6];
+
+int main() {
+
+    int n, id, m, type;
+    scanf("%d", &n);
+    string key, text;
+    //输入图书信息
+    for (int i = 0; i < n; ++i) {
+        scanf("%d", &id);
+        getchar();
+        for (int j = 1; j <= 5; ++j) {
+
+            if (j == 3) {
+                while (cin >> key) {
+                    mp[j][key].insert(id);
+                    if (getchar() == '\n') break;
+                }
+            } else {
+                getline(cin, key);
+                mp[j][key].insert(id);
+            }
+
+        }
+    }
+
+    scanf("%d", &m);
+
+    for (int i = 0; i < m; i++) {
+        scanf("%d: ", &type);
+        getline(cin, text);
+        cout << type << ": " << text << endl;
+        if(mp[type].find(text) == mp[type].end())
+            printf("Not Found\n");
+        else{
+            for(auto it = mp[type][text].begin(); it != mp[type][text].end(); it++){
+                printf("%07d\n", *it);
+            }
+        }
+
+    }
+}
+
+//17:48 NC PAT AC
