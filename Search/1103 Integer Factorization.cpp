@@ -46,8 +46,11 @@ void dfs(int index, int nowK, int sum, int sumFac) {
     if (nowK > k || sum > n) return;
     if (index - 1 >= 0) {
         temp.push_back(index);
+        //选中当前因子
         dfs(index, nowK+1, sum + fac[index], sumFac + index);
+        //将当前因子从临时分支移除
         temp.pop_back();
+        //不选当前因子，尝试下一个因子
         dfs(index - 1, nowK, sum, sumFac);
     }
 }
