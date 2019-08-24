@@ -20,7 +20,7 @@ using namespace std;
 
 const int maxn = 110;
 
-int leveCount[maxn] = {0}, maxDepth = 0;
+int levelCount[maxn] = {0}, maxDepth = 0;
 vector<int> node[maxn];
 
 void DFS(int parent, int depth)
@@ -28,7 +28,7 @@ void DFS(int parent, int depth)
     if(node[parent].empty()){
         if(depth > maxDepth)
             maxDepth = depth;
-        leveCount[depth]++;
+        levelCount[depth]++;
     }
     for(int i=0; i<node[parent].size(); i++)
         DFS(node[parent][i], depth+1);
@@ -46,9 +46,9 @@ int main(){
     }
 
     DFS(1,1);
-    printf("%d", leveCount[1]);
+    printf("%d", levelCount[1]);
     for(int i=2;i<=maxDepth;i++)
-        printf(" %d", leveCount[i]);
+        printf(" %d", levelCount[i]);
 }
 
 //16:55 AC
