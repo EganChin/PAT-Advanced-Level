@@ -38,7 +38,7 @@ int getHeight(Node *root) {
     return root->height;
 }
 
-int getBalaceFactor(Node *root) {
+int getBalanceFactor(Node *root) {
     return getHeight(root->left) - getHeight(root->right);
 }
 
@@ -72,10 +72,10 @@ void insert(Node *&root, int x){
     if(x<root->data){
         insert(root->left, x);
         updateHeight(root);
-        if(getBalaceFactor(root) == 2){
-            if(getBalaceFactor(root->left) == 1)
+        if(getBalanceFactor(root) == 2){
+            if(getBalanceFactor(root->left) == 1)
                 R(root);
-            else if(getBalaceFactor(root->left) == -1){
+            else if(getBalanceFactor(root->left) == -1){
                 L(root->left);
                 R(root);
             }
@@ -83,10 +83,10 @@ void insert(Node *&root, int x){
     } else{
         insert(root->right, x);
         updateHeight(root);
-        if(getBalaceFactor(root) == -2){
-            if(getBalaceFactor(root->right) == -1)
+        if(getBalanceFactor(root) == -2){
+            if(getBalanceFactor(root->right) == -1)
                 L(root);
-            else if(getBalaceFactor(root->right) == 1){
+            else if(getBalanceFactor(root->right) == 1){
                 R(root->right);
                 L(root);
             }

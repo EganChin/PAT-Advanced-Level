@@ -17,6 +17,6 @@ add_executable(BST.build "1099 Build a Binary Search Tree.cpp")
 #平衡二叉树
 add_executable(AVL.root "1066 Root of AVL Tree.cpp")
 #并查集
-add_executable(SET.social "1107 Social Clusters.cpp")
+add_executable(UFS.social "1107 Social Clusters.cpp")
 #堆
 add_executable(HEAP.sort "1098 Insertion of Heap sort.cpp")
