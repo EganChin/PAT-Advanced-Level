@@ -37,28 +37,31 @@ Sample Output 2:
 0
  **/
 
-#include <iostream>
-#include <map>
-#include <string>
+// begin at 07/11/19 15:34 
 
+#include<iostream>
+#include<map>
+#include<string>
 using namespace std;
 
-#define MAXV 2010
-
+#define MAX_NUM 2010
 
 map<string, int> gang;
 map<string, int> strToInt;
 map<int, string> intToStr;
 
-int personNum = 0, n, k;
+int N, K;
 
-int G[MAXV][MAXV] = {0}, weight[MAXV] = {0}, visit[MAXV] = {0};
+int Graph[MAX_NUM][MAX_NUM] = {0}, weight[MAX_NUM] = {0}, visit[MAX_NUM] = {0}, personNum=0;
 
-/**
- * 将字符串转换为数字id
- **/
-int convert(const string &str) {
-    if (strToInt.find(str) != strToInt.end()) {
+int convertToInt(const string &str){
+//	if(strToInt.find(name) == strToInt.end()){
+//		strToInt[name] = personNum;
+//		intToStr[personNum] = name;
+//		personNum++;
+//	}
+//	return strToInt[name]; 
+	if (strToInt.find(str) != strToInt.end()) {
         return strToInt[str];
     } else {
         strToInt[str] = personNum;
@@ -67,57 +70,65 @@ int convert(const string &str) {
     }
 }
 
-void DFS(int u, int &head, int &memberNum, int &totalValue) {
-    //如果顶点没有被访问过
-    if (!visit[u]) {
-        visit[u] = true;
-        if (weight[u] > weight[head])
-            head = u;
-        memberNum++;
-        for (int v = 0; v < personNum; v++) {
-            //如果存在通话记录，计算总时长和成员数
-            if (G[u][v] > 0) {
-                totalValue += G[v][u];
-                //无向图，必须删除边防止回头
-                G[u][v] = G[v][u] = 0;
-                if (!visit[v])
-                    DFS(v, head, memberNum, totalValue);
-            }
-        }
-    }
+void DFS(int u, int &head, int &memberNum, int &totalWeight){
+	//if the vertex has visited, skip it, else visit
+	if(!visit[u]){
+		visit[u] = true;
+		//calculate the head of the gang 
+		if(weight[u] > weight[head]){
+			head = u;
+		}
+		memberNum++;
+		for(int v=0; v<personNum; v++){
+			//if u and v has phone record more than one time, then calculate member and total weight
+			if(Graph[u][v] > 0){
+				totalWeight += Graph[u][v];
+				//after caculation, delete the record(be care of the graph is undirected )	
+				Graph[u][v] = Graph[v][u] = 0;
+				if(!visit[v])
+					DFS(v, head, memberNum, totalWeight);
+			}
+		}
+	}
 }
 
-void DFSTravel() {
-    for (int i = 0; i < personNum; i++) {
-        int head = i, memberNum = 0, totalValue = 0;
-        DFS(i, head, memberNum, totalValue);
-//        cout << intToStr[head] << "," << head << "," << memberNum << "," << totalValue << endl;
-        //如果是一个团伙
-        if (memberNum > 2 && totalValue > k) {
-            gang[intToStr[head]] = memberNum;
-        }
-    }
+void DFSTravel(){
+	for(int i=0; i<personNum; i++){
+		int head = i, memberNum = 0, totalWeight=0;
+		DFS(i, head, memberNum, totalWeight);
+		cout << intToStr[head] << "," << head << "," << memberNum << "," << totalWeight << endl;
+		if(memberNum > 2 && totalWeight > K){
+			gang[intToStr[head]] = memberNum;
+		}
+	}
 }
 
-int main() {
-    int time, id1, id2;
-    cin >> n >> k;
-    for (int i = 0; i < n; i++) {
-        string name1, name2;
-        cin >> name1 >> name2 >> time;
-        id1 = convert(name1);
-        id2 = convert(name2);
-        G[id1][id2] = G[id2][id1] = (G[id1][id2] + time);
-        weight[id1] += time;
-        weight[id2] += time;
-    }
-    DFSTravel();
-    cout << gang.size() << endl;
-    for (const auto &it: gang) {
-        cout << it.first << " " << it.second << endl;
-    }
+int main(){
+	int time, u, v;
+	cin >> N >> K;
+	for(int i=0; i<N; i++){
+		string name1, name2;
+		cin >> name1 >> name2 >> time;
+		u = convertToInt(name1), v = convertToInt(name2);
+		Graph[u][v] = Graph[v][u] = (Graph[u][v] + time);
+		weight[u] += time, weight[v] += time;
+	}
+	
+	
+	DFSTravel(); 
+	
+	cout << gang.size() << endl;
+	for(const auto &it : gang){
+		cout << it.first << " " << it.second << endl;
+	}
+	
 }
 
-/**
- * Accept at 2019/9/18 14:36
- */
+
+
+
+
+
+
+
+
