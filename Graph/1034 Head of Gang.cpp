@@ -54,20 +54,13 @@ int N, K;
 
 int Graph[MAX_NUM][MAX_NUM] = {0}, weight[MAX_NUM] = {0}, visit[MAX_NUM] = {0}, personNum=0;
 
-int convertToInt(const string &str){
-//	if(strToInt.find(name) == strToInt.end()){
-//		strToInt[name] = personNum;
-//		intToStr[personNum] = name;
-//		personNum++;
-//	}
-//	return strToInt[name]; 
-	if (strToInt.find(str) != strToInt.end()) {
-        return strToInt[str];
-    } else {
-        strToInt[str] = personNum;
-        intToStr[personNum] = str;
-        return personNum++;
-    }
+int convertToInt(const string &name){
+	if(strToInt.find(name) == strToInt.end()){
+		strToInt[name] = personNum;
+		intToStr[personNum] = name;
+		personNum++;
+	}
+	return strToInt[name]; 
 }
 
 void DFS(int u, int &head, int &memberNum, int &totalWeight){
@@ -96,7 +89,7 @@ void DFSTravel(){
 	for(int i=0; i<personNum; i++){
 		int head = i, memberNum = 0, totalWeight=0;
 		DFS(i, head, memberNum, totalWeight);
-		//cout << intToStr[head] << "," << head << "," << memberNum << "," << totalWeight << endl;
+		cout << intToStr[head] << "," << head << "," << memberNum << "," << totalWeight << endl;
 		if(memberNum > 2 && totalWeight > K){
 			gang[intToStr[head]] = memberNum;
 		}
@@ -124,6 +117,7 @@ int main(){
 	
 }
 
+// finish at 07/11/19 16:37
 
 
 
