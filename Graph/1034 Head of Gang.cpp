@@ -96,7 +96,7 @@ void DFSTravel(){
 	for(int i=0; i<personNum; i++){
 		int head = i, memberNum = 0, totalWeight=0;
 		DFS(i, head, memberNum, totalWeight);
-		cout << intToStr[head] << "," << head << "," << memberNum << "," << totalWeight << endl;
+		//cout << intToStr[head] << "," << head << "," << memberNum << "," << totalWeight << endl;
 		if(memberNum > 2 && totalWeight > K){
 			gang[intToStr[head]] = memberNum;
 		}
